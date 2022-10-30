@@ -1,0 +1,36 @@
+# remap prefix from 'C-b' to 'C-a'
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+# "|" splits the current window vertically, and "-" splits it horizontally
+unbind %
+bind | split-window -h
+bind - split-window -v
+
+# Pane navigation (vim-like)
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Pane resizing
+bind -r Left  resize-pane -L 4
+bind -r Down  resize-pane -D 4
+bind -r Up    resize-pane -U 4
+bind -r Right resize-pane -R 4
+
+# color for sell !
+set -g default-terminal "screen-256color"
+
+# mouse is great!
+set-option -g mouse on
+
+# reload tmux without killing the server
+bind R source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+
+run '~/.tmux/plugins/tpm/tpm'
