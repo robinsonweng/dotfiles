@@ -148,6 +148,9 @@ Plug 'rust-lang/rust.vim'
 " language syntax color
 Plug 'NLKNguyen/papercolor-theme'
 
+" neerd tree
+Plug 'preservim/nerdtree'
+
 " wilder -- a better vim command tab compliation plugin
 if has('nvim')
 	function! UpdateRemotePlugins(...)
