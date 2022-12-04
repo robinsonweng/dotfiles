@@ -33,6 +33,8 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
+" map nerdtree to f5
+nnoremap <F5> :exec 'NERDTreeToggle' <CR>
 
 " origin vim command tab complete settings
 
