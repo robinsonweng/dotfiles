@@ -23,8 +23,8 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'rust-lang/rust.vim'
 
-" language syntax color
-Plug 'NLKNguyen/papercolor-theme'
+" theme
+Plug 'tomasiser/vim-code-dark'
 
 " neerd tree
 Plug 'preservim/nerdtree'
