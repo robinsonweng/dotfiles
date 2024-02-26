@@ -12,9 +12,47 @@ set smartcase
 
 set t_Co=256
 
+call plug#begin()
+" vim-lsp
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+
+" auto complete for vim-lsp
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'rust-lang/rust.vim'
+
+" language syntax color
+Plug 'NLKNguyen/papercolor-theme'
+
+" neerd tree
+Plug 'preservim/nerdtree'
+
+" wilder -- a better vim command tab compliation plugin
+if has('nvim')
+	function! UpdateRemotePlugins(...)
+		"Needed to refresh runtime files
+		let &rtp=&rtp
+		UpdateRemotePlugins
+	endfunction
+			  
+	Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+else
+	Plug 'gelguy/wilder.nvim'
+	
+	" To use Python remote plugin features in Vim, can be skipped
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+call plug#end()
+
+
+
 " theme settings
 set background=dark
-colorscheme PaperColor
+colorscheme codedark
 
 
 " overwrite theme
@@ -40,26 +78,6 @@ nnoremap <F5> :exec 'NERDTreeToggle' <CR>
 
 
 " wilder plug settings
-
-" wilder default keys
-packadd wilder.nvim
-call wilder#setup({
-      \ 'modes': [':', '/', '?'],
-      \ 'next_key': '<Tab>',
-      \ 'previous_key': '<S-Tab>',
-      \ 'accept_key': '<Down>',
-      \ 'reject_key': '<Up>',
-      \ })
-
-
-" wilder pipline settings 
-call wilder#set_option('pipeline', [
-	      \   wilder#branch(
-      \     wilder#cmdline_pipeline(),
-      \     wilder#search_pipeline(),
-      \   ),
-      \ ])
-
 set wildmenu
 set wildmode=longest:list,full
 
@@ -136,38 +154,3 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-call plug#begin()
-" vim-lsp
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-
-" auto complete for vim-lsp
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'rust-lang/rust.vim'
-
-" language syntax color
-Plug 'NLKNguyen/papercolor-theme'
-
-" neerd tree
-Plug 'preservim/nerdtree'
-
-" wilder -- a better vim command tab compliation plugin
-if has('nvim')
-	function! UpdateRemotePlugins(...)
-		"Needed to refresh runtime files
-		let &rtp=&rtp
-		UpdateRemotePlugins
-	endfunction
-			  
-	Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
-else
-	Plug 'gelguy/wilder.nvim'
-	
-	" To use Python remote plugin features in Vim, can be skipped
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-call plug#end()
